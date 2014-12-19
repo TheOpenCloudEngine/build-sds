@@ -13,10 +13,13 @@ sudo ln -s /usr/lib/jvm/java-7-oracle /usr/local/java
 
 # Install Docker
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+git clone https://github.com/uengine/docker-jboss.git
+cd docker-jboss
+sudo docker build -t jboss .
 
 # Install HAProxy
-sudo apt-get install haproxy
+sudo apt-get install -y haproxy
 sudo haproxy /etc/default/haproxy
 mv /etc/haproxy/haproxy.cfg{,.original}
 cp haproxy.cfg /etc/haproxy/haproxy.cfg
-service haproxy start
+sudo service haproxy start
