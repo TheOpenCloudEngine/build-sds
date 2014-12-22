@@ -18,6 +18,5 @@ sudo service haproxy start
 
 # Install Docker
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
-git clone https://github.com/uengine/docker-jboss.git
-cd docker-jboss
 sudo docker build -t jboss .
+
