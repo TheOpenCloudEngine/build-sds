@@ -25,3 +25,5 @@ COPY td-agent.server.conf /etc/td-agent/td-agent.conf
 
 # Expose the ports we're interested in
 EXPOSE 22 24224 24220
+
+CMD ["/usr/bin/supervisord"]
