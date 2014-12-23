@@ -27,6 +27,23 @@ $ cd ../postgresql
 $ sh -x build.sh
 ```
 
+Basic Configuration
+=====
+#### 1. Configuration
+```
+$ sh -x launchNodes.sh
+```
+
+#### 2. Confirm HAProxy Statistics Report Page
+```
+http://localhost:8080/haproxy?stats
+```
+
+#### 3. Confrim JBoss Page
+```
+http://localhost:8080/
+```
+
 Run Docker Container
 =====
 #### 1. Run Collector container
@@ -62,8 +79,6 @@ $ docker start <Name of jboss container>
 ```
 $ docker start <Name of PostgreSQL container>
 ```
-
-
 
 Connect to container
 =====
