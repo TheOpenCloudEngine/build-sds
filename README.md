@@ -44,6 +44,27 @@ $ docker run -d -P --name=<Name of container> jboss
 $ docker run -d -P --name=<Name of container> postgresql
 ```
 
+Start Docker Container
+=====
+Use only when host os is restarted.
+
+#### 1. Start Collector container
+```
+$ docker start <Name of collector container>
+```
+
+#### 2. Start JBoss node container
+```
+$ docker start <Name of jboss container>
+```
+
+#### 3. Start PostgreSQL container
+```
+$ docker start <Name of PostgreSQL container>
+```
+
+
+
 Connect to container
 =====
 
