@@ -14,7 +14,7 @@ sudo apt-get install -y haproxy
 sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.default
 sudo cp haproxy /etc/default/haproxy
-sudo service haproxy start
+sudo service haproxy restart
 
 # Install Docker
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
@@ -32,3 +32,7 @@ sudo sh -x build.sh
 # Install PostgreSQL
 cd $CURPATH/postgresql
 sudo sh -x build.sh
+
+# Basic Configuration
+cd $CURPATH
+sudo sh -x configure.sh

@@ -29,9 +29,9 @@ $ sh -x build.sh
 
 Basic Configuration
 =====
-#### 1. Configuration
+#### 1. Configure
 ```
-$ sh -x launchNodes.sh
+$ sh -x configure.sh
 ```
 
 #### 2. Confirm HAProxy Statistics Report Page
