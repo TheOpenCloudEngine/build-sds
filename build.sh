@@ -22,13 +22,13 @@ curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 CURPATH=`pwd`
 
 # Install Wildfly server and Fluentd client agent
-cd $CURPATH/build-sds/jboss
+cd $CURPATH/jboss
 sudo sh -x build.sh
 
 # Install Fluentd server (log collector)
-cd $CURPATH/build-sds/collector
+cd $CURPATH/collector
 sudo sh -x build.sh
 
 # Install PostgreSQL
-cd $CURPATH/build-sds/postgresql
+cd $CURPATH/postgresql
 sudo sh -x build.sh
