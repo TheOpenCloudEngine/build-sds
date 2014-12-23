@@ -13,14 +13,15 @@ RUN mkdir /var/run/sshd
 # Install for Fluentd
 RUN apt-get install -y sudo vim net-tools
 
+# Install Supervisor
+RUN apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+ADD supervisord.conf /etc/supervisor/conf.d/
+RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
+
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
 COPY td-agent.server.conf /etc/td-agent/td-agent.conf
-RUN /etc/init.d/td-agent restart
-RUN mkdir /var/log/td-agent/
-RUN chown td-agent:td-agent /var/log/td-agent/
 
 # Expose the ports we're interested in
-EXPOSE 22 8080 9990 24224 24220
-
-CMD ["/usr/bin/supervisord"]
+EXPOSE 22 24224 24220
