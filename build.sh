@@ -18,5 +18,17 @@ sudo service haproxy start
 
 # Install Docker
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
-sudo docker build -t jboss .
 
+CURPATH=`pwd`
+
+# Install PostgreSQL
+cd $CURPATH/build-sds/postgresql
+sudo sh -x build.sh
+
+# Install Wildfly server and Fluentd client agent
+cd $CURPATH/build-sds/node
+sudo sh -x build.sh
+
+# Install Fluentd server (log collector)
+cd $CURPATH/build-sds/collector
+sudo sh -x build.sh
