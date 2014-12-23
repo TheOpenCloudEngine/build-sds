@@ -8,7 +8,7 @@ Build Docker Image
 =====
 #### 1. Build JBoss node docker image
 ```
-$ cd node
+$ cd jboss
 
 $ sh -x build.sh
 ```
@@ -16,6 +16,13 @@ $ sh -x build.sh
 #### 2. Build collector docker image
 ```
 $ cd ../collector
+
+$ sh -x build.sh
+```
+
+#### 3. Build PostgreSQL docker image
+```
+$ cd ../postgresql
 
 $ sh -x build.sh
 ```
@@ -30,6 +37,11 @@ $ docker run -d -P --name=<Name of container> collector
 #### 2. Run JBoss node container
 ```
 $ docker run -d -P --name=<Name of container> jboss
+```
+
+#### 3. Run PostgreSQL container
+```
+$ docker run -d -P --name=<Name of container> postgresql
 ```
 
 Connect to container
