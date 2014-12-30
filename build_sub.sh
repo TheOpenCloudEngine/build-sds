@@ -19,7 +19,7 @@ sudo sh -x build.sh "$GUEST_OS"
 
 # Install PostgreSQL
 cd $CURPATH/postgresql
-sudo sh -x build.sh "$GUEST_OS"
+#sudo sh -x build.sh "$GUEST_OS"
 
 # Basic Configuration
 cd $CURPATH

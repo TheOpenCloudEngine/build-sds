@@ -7,4 +7,7 @@ do
         echo "server node$i $(cat node$i.ipaddress):8080 check" >> /etc/haproxy/haproxy.cfg
 done
 
+# Run collector server
+docker run -d -P --name collector collector > collector.cid
+
 service haproxy restart
