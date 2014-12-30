@@ -3,8 +3,14 @@ MAINTAINER Sang Song <swsong@websqrd.com>
 
 RUN echo 'root:password' | chpasswd
 
-RUN yum clean all; yum update
-RUN yum install -y curl
+RUN yum clean all
+RUN yum install -y curl sudo
+
+##Disable Defaults requiretty in sudoers file
+RUN sed -i "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers
+
+# Install EPEL (Extra Packages for Enterprise Linux) for Docker on CentOS
+RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install SSH Deamon
 RUN yum install -y openssh-server
@@ -20,10 +26,10 @@ ADD supervisord.conf /etc/supervisor/conf.d/
 RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
 
 #NTPD
-sudo chkconfig ntpd on
-sudo service ntpd stop
-sudo ntpdate time.nist.gov
-sudo service ntpd start
+RUN chkconfig ntpd on
+RUN service ntpd stop
+RUN ntpdate time.nist.gov
+RUN service ntpd start
 
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh

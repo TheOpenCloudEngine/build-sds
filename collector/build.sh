@@ -3,4 +3,6 @@ if [ -z "$1" ]; then
     echo "Usage: build.sh [Guest OS Type]"
     exit 1;
 fi
+# Copy setting files due to Dockerfile cannot see parent directory file
+sudo cp supervisord.conf td-agent.server.conf ./"$1"/
 sudo docker build -t collector ./"$1"
