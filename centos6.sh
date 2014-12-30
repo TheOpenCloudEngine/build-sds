@@ -12,6 +12,12 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.default
 sudo cp haproxy /etc/default/haproxy
 sudo service haproxy restart
 
+# Adjust time
+sudo chkconfig ntpd on
+sudo service ntpd stop
+sudo ntpdate time.nist.gov
+sudo service ntpd start
+
 # Install Docker
 sudo yum install docker-io -y
 # Start Docker daemon

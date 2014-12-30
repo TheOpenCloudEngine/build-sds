@@ -16,6 +16,11 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.default
 sudo cp haproxy /etc/default/haproxy
 sudo service haproxy restart
 
+# Adjust time
+#
+# TODO
+#
+
 # Install Docker
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 

@@ -19,12 +19,6 @@ RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/
 RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
 
-#NTPD
-sudo chkconfig ntpd on
-sudo service ntpd stop
-sudo ntpdate time.nist.gov
-sudo service ntpd start
-
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
 COPY td-agent.server.conf /etc/td-agent/td-agent.conf

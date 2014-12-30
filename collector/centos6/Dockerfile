@@ -22,14 +22,8 @@ RUN yum install -y sudo vim net-tools ntp
 # Install Supervisor
 RUN yum install -y supervisor
 RUN mkdir -p /var/log/supervisor
-ADD supervisord.conf /etc/supervisor/conf.d/
-RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
-
-#NTPD
-RUN chkconfig ntpd on
-RUN service ntpd stop
-RUN ntpdate time.nist.gov
-RUN service ntpd start
+ADD supervisord.conf /etc/supervisor
+RUN chmod 644 /etc/supervisor/supervisord.conf
 
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
