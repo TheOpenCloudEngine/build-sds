@@ -4,7 +4,13 @@ MAINTAINER Sang Song <swsong@websqrd.com>
 RUN echo 'root:password' | chpasswd
 
 RUN yum clean all
-RUN yum install -y curl sudo java-1.7.0-openjdk.x86_64
+RUN yum install -y curl sudo java-1.7.0-openjdk.x86_64 tar
+
+##Disable Defaults requiretty in sudoers file
+RUN sed -i "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers
+
+# Install EPEL (Extra Packages for Enterprise Linux) for Docker on CentOS
+RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install SSH Deamon
 RUN yum install -y openssh-server
