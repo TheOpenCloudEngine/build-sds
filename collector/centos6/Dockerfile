@@ -33,7 +33,7 @@ RUN service ntpd start
 
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
-COPY td-agent.server.conf /etc/td-agent/td-agent.conf
+COPY td-agent.client.conf /etc/td-agent/td-agent.conf
 
 # Expose the ports we're interested in
 EXPOSE 22 24224 24220
