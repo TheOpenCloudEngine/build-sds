@@ -11,13 +11,19 @@ RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 
 # Install for Fluentd
-RUN apt-get install -y sudo vim net-tools
+RUN apt-get install -y sudo vim net-tools ntp
 
 # Install Supervisor
 RUN apt-get install -y supervisor
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/
 RUN chmod 644 /etc/supervisor/conf.d/supervisord.conf
+
+#NTPD
+sudo chkconfig ntpd on
+sudo service ntpd stop
+sudo ntpdate time.nist.gov
+sudo service ntpd start
 
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-ubuntu-precise-td-agent2.sh | sh
