@@ -28,6 +28,9 @@ RUN chmod 644 /etc/supervisord.conf
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 COPY td-agent.server.conf /etc/td-agent/td-agent.conf
+RUN mkdir -p /var/log/metering
+RUN touch /var/log/metering/metering.log /var/log/metering/meteringErr.log
+RUN chown -R td-agent:td-agent /var/log/metering
 
 # Expose the ports we're interested in
 EXPOSE 22 24224 24220
