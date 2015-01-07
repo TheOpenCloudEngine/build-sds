@@ -28,6 +28,9 @@ RUN cd /opt && curl http://download.jboss.org/wildfly/8.1.0.Final/wildfly-8.1.0.
 RUN ln -s /opt/wildfly-$WILDFLY_VERSION /opt/wildfly && chown -R wildfly:wildfly /opt/wildfly
 ENV JBOSS_HOME /opt/wildfly
 
+# Install Apache webserver
+RUN yum install -y httpd
+
 # Install Supervisor
 RUN yum install -y supervisor
 RUN mkdir -p /var/log/supervisor
@@ -37,6 +40,9 @@ RUN chmod 644 /etc/supervisord.conf
 # Install Fluentd
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 COPY td-agent.client.conf /etc/td-agent/td-agent.conf
+RUN mkdir -p /var/log/metering
+RUN touch /var/log/metering/metering.log /var/log/metering/meteringErr.log
+RUN chown -R td-agent:td-agent /var/log/metering
 
 # Expose the ports we're interested in
 EXPOSE 22 8080 9990 24224
