@@ -15,6 +15,9 @@ RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noa
 # Install SSH Deamon
 RUN yum install -y openssh-server
 RUN mkdir /var/run/sshd
+# Enable ssh connect
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
 
 # Install for Fluentd
 RUN yum install -y sudo vim net-tools ntp
@@ -41,7 +44,6 @@ RUN chmod 644 /etc/supervisord.conf
 RUN curl -L http://toolbelt.treasuredata.com/sh/install-redhat-td-agent2.sh | sh
 COPY td-agent.client.conf /etc/td-agent/td-agent.conf
 RUN mkdir -p /var/log/metering
-RUN touch /var/log/metering/metering.log /var/log/metering/meteringErr.log
 RUN chown -R td-agent:td-agent /var/log/metering
 
 # Expose the ports we're interested in
