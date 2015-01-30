@@ -13,7 +13,7 @@ RUN sed -i "s/Defaults    requiretty.*/ #Defaults    requiretty/g" /etc/sudoers
 RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install SSH Deamon
-RUN yum install -y openssh-server
+RUN yum install -y openssh-server openssh-clients
 RUN mkdir /var/run/sshd
 # Enable ssh connect
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
